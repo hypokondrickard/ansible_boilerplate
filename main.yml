@@ -1,0 +1,16 @@
+---
+- name: 
+  hosts: localhost
+  gather_facts: False
+  connection: local
+
+  tasks:
+    - name: Pre-check
+      include_role:
+        name: ddi.ipam.verify_subnet
+      vars:
+        parent_subnet: "10.0.0.0/24"
+
+    - name: allocate ip from bluecat
+      debug:
+        msg: "allocated 10.0.0.5"

@@ -1,0 +1,11 @@
+---
+# tasks file for verify_subnet
+- name: Ensure parent_subnet exists
+  assert:
+    that: parent_subnet is defined
+    msg: "parent subnet has not been defined"
+
+- name: Verify subnet
+  fail:
+    msg: "Chosen a faulty parent subnet"
+  when: parent_subnet != "11.0.0.0/8"
