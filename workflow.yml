@@ -1,0 +1,26 @@
+name: Run Molecule Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Run Molecule Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x' # specify Python version
+
+    - name: Install dependencies
+      run: |
+        pip install molecule ansible
+
+    - name: Run Molecule tests
+      run: |
+        cd ansible_boilerplate/collections/ansible_collections/ddi/ipam
+        molecule test
