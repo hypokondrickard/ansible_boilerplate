@@ -22,5 +22,5 @@ jobs:
 
     - name: Run Molecule tests
       run: |
-        cd ansible_boilerplate/collections/ansible_collections/ddi/ipam
+        cd collections/ansible_collections/ddi/ipam
         molecule test
