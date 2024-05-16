@@ -18,7 +18,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install molecule ansible
+        pip install molecule[docker]
+        pip install ansible
 
     - name: Run Molecule tests
       run: |
