@@ -14,12 +14,11 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x' # specify Python version
+        python-version: '3.8.10' # specify Python version
 
     - name: Install dependencies
       run: |
-        pip install molecule molecule-plugins[docker]
-        #pip unstall molecule-docker
+        pip install -r requirements.txt
 
     - name: Run Molecule tests
       run: |
