@@ -3,6 +3,26 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: "Include ipam"
-      ansible.builtin.include_role:
-        name: "ipam"
+    - name: Replace this task with one that validates your content
+      ansible.builtin.debug:
+        msg: "This is the effective test"
+    - block:
+        - name: "Test subnet verification PASSING"
+          ansible.builtin.include_role:
+            name: "verify_subnet"
+          vars:
+            parent_subnet: "10.0.0.0/8"
+      rescue:
+        - fail:
+            msg: "Passing test failed"
+
+    - block:
+        - name: "Test subnet verification FAILING"
+          ansible.builtin.include_role:
+            name: "verify_subnet"
+          vars:
+            parent_subnet: "10.0.0.0/24"
+          register: test_subnet_verification_failing
+      rescue:
+        - debug:
+            msg: "Failing test failed"
